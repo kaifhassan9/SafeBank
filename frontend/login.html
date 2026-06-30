@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | SafeBank</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+    <div class="auth-wrapper">
+        <div class="auth-header">
+            <span class="logo">SafeBank<span>.</span></span>
+            <h1>Welcome back</h1>
+            <p>Please enter your details to access your account.</p>
+        </div>
+
+        <div class="card auth-card">
+            <div class="input-stack">
+                <label>Email Address</label>
+                <input id="loginEmail" placeholder="name@company.com" type="email">
+                
+                <label>Password</label>
+                <input id="loginPassword" type="password" placeholder="••••••••">
+                
+                <button class="btn-primary auth-btn" onclick="login()">Sign In</button>
+            </div>
+            
+            <div class="auth-footer">
+                New to SafeBank? <a href="register.html">Create an account</a>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeBank | Dashboard</title>
+    <!-- Adding Inter Font for a professional look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script>
+        if (!localStorage.getItem("token")) { window.location.href = "login.html"; }
+    </script>
+
+    <nav class="navbar">
+        <div class="nav-content">
+            <span class="logo">SafeBank<span>.</span></span>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <main class="dashboard-wrapper">
+        <!-- Header Section -->
+        <header class="welcome-header">
+            <h1>Dashboard</h1>
+            <p id="current-date"></p>
+        </header>
+
+        <!-- Main Grid -->
+        <div class="grid-layout">
+            <!-- Left Column: Balance & Actions -->
+            <div class="column-main">
+               <div id="main-balance-card" class="card balance-card" style="display: none; margin-bottom: 2rem;">
+    <div class="balance-info">
+        <span class="label">Total Balance</span>
+        <h2 id="balanceText">₹0.00</h2>
+    </div>
+    <button class="refresh-circle" onclick="getBalance()">↻</button>
+</div>
+                <div class="actions-grid">
+                    <div class="card action-card">
+                        <h3>Deposit</h3>
+                        <div class="input-stack">
+                            <input type="number" id="depositAmount" placeholder="0.00">
+                            <button class="btn-primary" onclick="deposit()">Deposit Funds</button>
+                        </div>
+                    </div>
+
+                    <div class="card action-card">
+                        <h3>Withdraw</h3>
+                        <div class="input-stack">
+                            <input type="number" id="withdrawAmount" placeholder="0.00">
+                            <button class="btn-secondary" onclick="withdraw()">Withdraw</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card transfer-card">
+                    <h3>Quick Transfer</h3>
+                    <div class="row">
+                        <input type="text" id="receiverId" placeholder="Account ID">
+                        <input type="number" id="transferAmount" placeholder="Amount (₹)">
+                    </div>
+                    <button class="btn-success" onclick="transfer()">Send Money</button>
+                </div>
+            </div>
+
+            <!-- Right Column: History -->
+            <div class="column-side">
+                <div class="card history-card">
+                    <div class="card-header">
+                        <h3>Recent Transactions</h3>
+                        <button class="text-link" onclick="getTransactions()">Refresh</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="transactionsTable">
+                            <tbody id="transactionsBody">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Chatbot UI -->
+<div id="chatbot-container" class="chatbot-collapsed">
+    <div id="chat-header" onclick="toggleChat()">
+        <span>🤖Assistant</span>
+        <button id="close-chat">_</button>
+    </div>
+    <div id="chat-box">
+        <div class="bot-msg">Hello! I'm SafeBot. How can I help you today? Try typing "balance" or "help".</div>
+    </div>
+    <div id="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask something...">
+        <button onclick="handleChat()">Send</button>
+    </div>
+</div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', { 
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+        });
+    </script>
+</body>
+</html>
